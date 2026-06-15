@@ -1,62 +1,146 @@
 # Just Vent
 
-A safe space to vent — type or speak your thoughts and receive a compassionate, non-judgmental AI response.
+> A safe, judgment-free space to say what's on your mind — and actually feel heard.
 
-## Stack
+![React](https://img.shields.io/badge/React_18-20232A?style=flat&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)
+![Claude](https://img.shields.io/badge/Claude_AI-D97757?style=flat&logo=anthropic&logoColor=white)
 
-| Layer    | Technology                          |
-|----------|-------------------------------------|
-| Frontend | React 18 + Vite + Tailwind CSS      |
-| Hosting  | Vercel                              |
-| Backend  | Supabase Edge Functions (Deno)      |
-| AI       | Anthropic Claude (claude-haiku-4-5) |
-| Speech   | Web Speech API (browser-native)     |
+---
+
+## What is this?
+
+**Just Vent** is an emotional support app where you type or speak your thoughts and receive a warm, compassionate AI response — never advice, never judgment, just presence.
+
+It's built for those moments when you need to get something off your chest but don't want to burden anyone.
+
+---
+
+## Features
+
+- **Vent freely** — type up to 1,000 characters or use your voice
+- **Voice input** — speak your thoughts using the browser's Speech API
+- **Four response tones** — choose how you want to be met:
+  - *Listen* — quiet, reflective presence
+  - *Warm* — nurturing, emotionally rich support
+  - *Perspective* — gentle reframing when you're ready
+  - *Closing* — a soft, affirming way to end a session
+- **Mood tagging** — label how you're feeling before you start
+- **Multi-turn conversations** — the AI remembers your session context
+- **Multilingual** — vent in English, हिंदी, தமிழ், or తెలుగు
+- **Virtual keyboard** — on-screen input for accessibility
+- **Auth** — secure sign-in via Firebase Authentication
+
+---
+
+## Tech Stack
+
+| Layer      | Technology                                         |
+|------------|----------------------------------------------------|
+| Frontend   | React 18 · Vite · Tailwind CSS · React Router v6  |
+| Auth       | Firebase Authentication                            |
+| Backend    | Firebase Cloud Functions (Node 20)                 |
+| Database   | Firebase Firestore                                 |
+| AI         | Anthropic Claude (`claude-sonnet-4-6`)             |
+| Speech     | Web Speech API (browser-native)                    |
+| Hosting    | Firebase Hosting                                   |
+
+---
 
 ## Project Structure
 
 ```
 just-vent/
-├── frontend/                  # React app
+├── frontend/
 │   └── src/
-│       ├── components/        # VentArea, MicButton, LanguageSelector, ResponseArea, ApiStatus
-│       ├── hooks/             # useSpeechRecognition, useVentState
-│       ├── services/          # ventService (Supabase client)
-│       └── utils/             # languages
-└── supabase/
-    └── functions/
-        └── vent-response/     # Edge function → Anthropic API
+│       ├── components/     # VentArea, MicButton, ResponseArea, Navbar, …
+│       ├── context/        # AuthContext
+│       ├── hooks/          # useVentState, useAudioRecorder, useSpeechRecognition
+│       ├── pages/          # Home, SignIn, SignUp, Settings
+│       ├── services/       # Firebase client, ventService
+│       └── utils/          # languages
+└── functions/
+    └── index.js            # Cloud Function → Anthropic API
 ```
+
+---
 
 ## Getting Started
 
-### 1. Frontend
+### Prerequisites
+
+- Node.js 20+
+- Firebase CLI — `npm install -g firebase-tools`
+- A Firebase project with **Authentication** and **Firestore** enabled
+- An [Anthropic API key](https://console.anthropic.com/)
+
+### 1. Clone & install
 
 ```bash
-cd frontend
-npm install
-cp .env .env.local   # fill in your Supabase URL + anon key
-npm run dev
+git clone https://github.com/MuKuNdSaNjAy/just-vent.git
+cd just-vent
+
+cd frontend && npm install
+cd ../functions && npm install
 ```
 
-### 2. Supabase Edge Function
+### 2. Configure environment
+
+**`frontend/.env.local`**
+```env
+VITE_SUPABASE_URL=your_firebase_project_url
+VITE_SUPABASE_ANON_KEY=your_firebase_anon_key
+```
+
+**`functions/.env`**
+```env
+ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=sk-proj-...
+```
+
+### 3. Run locally
 
 ```bash
-# Install Supabase CLI if needed: https://supabase.com/docs/guides/cli
-supabase start
-supabase secrets set ANTHROPIC_API_KEY=sk-ant-...
-supabase functions serve vent-response
+# Terminal 1 — frontend
+cd frontend && npm run dev
+
+# Terminal 2 — Firebase emulator
+firebase emulators:start --only functions
 ```
 
-### 3. Deploy
+### 4. Deploy
 
-- **Frontend** — push to GitHub and import on [Vercel](https://vercel.com). Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` in the Vercel environment variables.
-- **Edge function** — `supabase functions deploy vent-response`
+```bash
+# Build frontend
+cd frontend && npm run build
+
+# Deploy everything
+firebase deploy
+```
+
+---
 
 ## Supported Languages
 
 | Code | Language |
 |------|----------|
-| en   | English  |
-| hi   | हिंदी    |
-| ta   | தமிழ்    |
-| te   | తెలుగు   |
+| `en` | English  |
+| `hi` | हिंदी    |
+| `ta` | தமிழ்    |
+| `te` | తెలుగు   |
+
+---
+
+## How it Works
+
+1. User types or speaks a vent and picks a response tone
+2. The frontend sends the conversation history + mood + tone to a Firebase Cloud Function
+3. The function calls the Anthropic Claude API with a carefully crafted system prompt tuned to each tone
+4. Claude's response is streamed back and displayed in the UI
+5. The session continues until the user is done — then a warm closing message ends it
+
+---
+
+*Built with care at IIT — because sometimes you just need to vent.*
