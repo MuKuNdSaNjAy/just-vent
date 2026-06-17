@@ -68,8 +68,18 @@ export default function Home() {
   const [micError, setMicError]                       = useState(null)
   const [showBreathing, setShowBreathing]             = useState(false)
   const [affirmation]                                 = useState(() => AFFIRMATIONS[Math.floor(Math.random() * AFFIRMATIONS.length)])
+  const [sessionStart]                               = useState(() => Date.now())
+  const [sessionElapsed, setSessionElapsed]          = useState(0)
 
   useLocalDraft(ventText, setVentText)
+
+  // Session timer — ticks every minute once a conversation starts
+  useEffect(() => {
+    if (!hasMessages) return
+    const id = setInterval(() => setSessionElapsed(Math.floor((Date.now() - sessionStart) / 60000)), 30000)
+    setSessionElapsed(Math.floor((Date.now() - sessionStart) / 60000))
+    return () => clearInterval(id)
+  }, [hasMessages, sessionStart])
 
   // Auto-show keyboard when a non-English language is selected
   useEffect(() => {
@@ -271,6 +281,7 @@ export default function Home() {
             <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#D4622A', opacity: 0.6 }} />
             {TONES.find((t) => t.value === tone)?.label ?? 'Just listening'}
             {mood && <span style={{ opacity: 0.6 }}>· {mood.emoji} {mood.label}</span>}
+            {sessionElapsed > 0 && <span style={{ opacity: 0.5 }}>· {sessionElapsed}m</span>}
           </span>
         </div>
       )}
