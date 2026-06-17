@@ -380,19 +380,45 @@ export default function Home() {
               <p style={{ color: '#9B4820', fontSize: '0.8rem', lineHeight: 1.6 }}>
                 This conversation is complete. Whenever you need to, you can always start a new one.
               </p>
-              <button
-                onClick={clearAll}
-                style={{
-                  marginTop: '0.85rem',
-                  padding: '0.45rem 1.2rem', borderRadius: '999px',
-                  background: 'linear-gradient(135deg,#E8943A,#D4622A)',
-                  border: 'none', color: '#0e0e0e',
-                  fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer',
-                  boxShadow: '0 2px 12px rgba(212,98,42,0.3)',
-                }}
-              >
-                Start a new conversation
-              </button>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '0.6rem', marginTop: '0.85rem', flexWrap: 'wrap' }}>
+                <button
+                  onClick={clearAll}
+                  style={{
+                    padding: '0.45rem 1.2rem', borderRadius: '999px',
+                    background: 'linear-gradient(135deg,#E8943A,#D4622A)',
+                    border: 'none', color: '#0e0e0e',
+                    fontSize: '0.78rem', fontWeight: 600, cursor: 'pointer',
+                    boxShadow: '0 2px 12px rgba(212,98,42,0.3)',
+                  }}
+                >
+                  Start a new conversation
+                </button>
+                <button
+                  onClick={() => {
+                    const lines = messages.map((m) => {
+                      const ts = m.time ? new Date(m.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''
+                      const who = m.role === 'user' ? 'You' : 'Just Vent'
+                      return `[${ts}] ${who}:\n${m.text}`
+                    })
+                    const blob = new Blob([lines.join('\n\n')], { type: 'text/plain' })
+                    const a = document.createElement('a')
+                    a.href = URL.createObjectURL(blob)
+                    a.download = `just-vent-${new Date().toISOString().slice(0, 10)}.txt`
+                    a.click()
+                    URL.revokeObjectURL(a.href)
+                  }}
+                  style={{
+                    padding: '0.45rem 1rem', borderRadius: '999px',
+                    background: 'transparent',
+                    border: '1px solid rgba(212,98,42,0.2)', color: '#7A3018',
+                    fontSize: '0.78rem', cursor: 'pointer', transition: 'all 0.15s',
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(212,98,42,0.5)'; e.currentTarget.style.color = '#D4622A' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(212,98,42,0.2)'; e.currentTarget.style.color = '#7A3018' }}
+                >
+                  ↓ Export conversation
+                </button>
+              </div>
             </div>
           )}
 
