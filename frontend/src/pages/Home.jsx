@@ -6,6 +6,17 @@ import ApiStatus             from '../components/ApiStatus'
 import VirtualKeyboard       from '../components/VirtualKeyboard'
 import BreathingExercise     from '../components/BreathingExercise'
 
+const AFFIRMATIONS = [
+  "You don't have to have it all figured out right now.",
+  "Your feelings are valid, even when they're hard to explain.",
+  "It's okay to not be okay.",
+  "You've gotten through hard days before — you can get through this one too.",
+  "Taking a moment to acknowledge how you feel is a brave thing.",
+  "Whatever you're carrying, you don't have to carry it alone.",
+  "You are more than your worst day.",
+  "Feeling things deeply is a sign of strength, not weakness.",
+]
+
 const MOODS = [
   { emoji: '😔', label: 'Low' },
   { emoji: '😢', label: 'Sad' },
@@ -45,6 +56,7 @@ export default function Home() {
   const [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false)
   const [micError, setMicError]                       = useState(null)
   const [showBreathing, setShowBreathing]             = useState(false)
+  const [affirmation]                                 = useState(() => AFFIRMATIONS[Math.floor(Math.random() * AFFIRMATIONS.length)])
 
   // Auto-show keyboard when a non-English language is selected
   useEffect(() => {
@@ -141,6 +153,15 @@ export default function Home() {
             <div style={{ width: 4, height: 4, borderRadius: '50%', background: '#D4622A', opacity: 0.5 }} />
             <div style={{ height: 1, width: 56, background: 'linear-gradient(270deg,transparent,rgba(212,98,42,0.35))' }} />
           </div>
+
+          {/* Daily affirmation */}
+          <p style={{
+            marginTop: '1rem', fontSize: '0.78rem', color: '#2e2e2e',
+            fontStyle: 'italic', maxWidth: 380, margin: '1rem auto 0',
+            lineHeight: 1.65, letterSpacing: '0.01em',
+          }}>
+            "{affirmation}"
+          </p>
 
           {/* Breathing exercise trigger */}
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '0.85rem' }}>
