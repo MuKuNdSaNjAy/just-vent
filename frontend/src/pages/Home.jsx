@@ -321,8 +321,8 @@ export default function Home() {
         <div style={{ maxWidth: 680, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {messages.map((msg, i) =>
             msg.role === 'user'
-              ? <UserBubble key={i} text={msg.text} />
-              : <AiBubble   key={i} text={msg.text} />
+              ? <UserBubble key={i} text={msg.text} time={msg.time} />
+              : <AiBubble   key={i} text={msg.text} time={msg.time} />
           )}
           {isLoading && <TypingIndicator />}
           {error && (
@@ -555,10 +555,15 @@ export default function Home() {
 
 /* ── Bubbles ── */
 
-function UserBubble({ text }) {
+function fmtTime(ts) {
+  if (!ts) return null
+  return new Date(ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+}
+
+function UserBubble({ text, time }) {
   if (text.startsWith('💭')) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column', alignItems: 'flex-end', gap: '0.2rem' }}>
         <div style={{
           maxWidth: '72%',
           background: 'rgba(212,98,42,0.06)',
@@ -570,11 +575,12 @@ function UserBubble({ text }) {
         }}>
           {text}
         </div>
+        {time && <span style={{ fontSize: '0.6rem', color: '#252525' }}>{fmtTime(time)}</span>}
       </div>
     )
   }
   return (
-    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+    <div style={{ display: 'flex', justifyContent: 'flex-end', flexDirection: 'column', alignItems: 'flex-end', gap: '0.2rem' }}>
       <div style={{
         maxWidth: '72%',
         background: 'linear-gradient(135deg, #200D07, #150D0A)',
@@ -587,11 +593,12 @@ function UserBubble({ text }) {
       }}>
         {text}
       </div>
+      {time && <span style={{ fontSize: '0.6rem', color: '#252525' }}>{fmtTime(time)}</span>}
     </div>
   )
 }
 
-function AiBubble({ text }) {
+function AiBubble({ text, time }) {
   const [copied, setCopied] = useState(false)
 
   function copyText() {
@@ -612,7 +619,8 @@ function AiBubble({ text }) {
           <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001z" />
         </svg>
       </div>
-      <div style={{ maxWidth: '72%', position: 'relative' }}
+      <div style={{ maxWidth: '72%', display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+      <div style={{ position: 'relative' }}
         onMouseEnter={(e) => { const btn = e.currentTarget.querySelector('[data-copy]'); if (btn) btn.style.opacity = '1' }}
         onMouseLeave={(e) => { const btn = e.currentTarget.querySelector('[data-copy]'); if (btn) btn.style.opacity = '0' }}
       >
@@ -642,6 +650,8 @@ function AiBubble({ text }) {
         >
           {copied ? '✓ Copied' : '⎘ Copy'}
         </button>
+      </div>
+      {time && <span style={{ fontSize: '0.6rem', color: '#252525', paddingLeft: '0.2rem' }}>{fmtTime(time)}</span>}
       </div>
     </div>
   )

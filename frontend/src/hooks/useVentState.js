@@ -42,7 +42,7 @@ export function useVentState() {
 
     if (detectCrisis(trimmed)) setShowCrisis(true)
 
-    const userMsg = { role: 'user', text: trimmed }
+    const userMsg = { role: 'user', text: trimmed, time: Date.now() }
     const history = [...messages, userMsg]
 
     setMessages(history)
@@ -52,7 +52,7 @@ export function useVentState() {
 
     try {
       const aiText = await sendVent(history, language.code, mood?.label ?? null, tone)
-      setMessages([...history, { role: 'ai', text: aiText }])
+      setMessages([...history, { role: 'ai', text: aiText, time: Date.now() }])
     } catch (err) {
       setError(err.message ?? 'Something went wrong.')
     } finally {
@@ -62,12 +62,12 @@ export function useVentState() {
 
   const requestAdvice = useCallback(async () => {
     const history = [...messages, { role: 'user', text: '__advice_request__' }]
-    setMessages([...messages, { role: 'user', text: '💭 I\'d like some perspective on this.' }])
+    setMessages([...messages, { role: 'user', text: '💭 I\'d like some perspective on this.', time: Date.now() }])
     setIsLoading(true)
     setError(null)
     try {
       const aiText = await sendVent(history, language.code, mood?.label ?? null, 'perspective')
-      setMessages((prev) => [...prev, { role: 'ai', text: aiText }])
+      setMessages((prev) => [...prev, { role: 'ai', text: aiText, time: Date.now() }])
     } catch (err) {
       setError(err.message ?? 'Something went wrong.')
     } finally {
@@ -81,7 +81,7 @@ export function useVentState() {
     setIsLoading(true)
     try {
       const aiText = await sendVent(history, language.code, mood?.label ?? null, 'closing')
-      setMessages((prev) => [...prev, { role: 'ai', text: aiText }])
+      setMessages((prev) => [...prev, { role: 'ai', text: aiText, time: Date.now() }])
     } catch {
       // silently ignore
     } finally {
