@@ -140,3 +140,34 @@
   0%, 60%, 100% { transform: translateY(0);    opacity: 0.4; }
   30%            { transform: translateY(-5px); opacity: 1;   }
 }
+
+/* ── Message bubble entrance ── */
+@keyframes bubble-in {
+  0%   { opacity: 0; transform: translateY(8px) scale(0.97); }
+  100% { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+.bubble-enter {
+  animation: bubble-in 0.22s ease-out both;
+}
+
+/* ── Custom scrollbar (webkit) ── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(212,98,42,0.2);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212,98,42,0.4);
+}
+
+/* ── Selection colour ── */
+::selection {
+  background: rgba(212,98,42,0.28);
+  color: #F5CEB0;
+}

@@ -358,8 +358,8 @@ export default function Home() {
         <div style={{ maxWidth: 680, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           {messages.map((msg, i) =>
             msg.role === 'user'
-              ? <UserBubble key={i} text={msg.text} time={msg.time} />
-              : <AiBubble   key={i} text={msg.text} time={msg.time} />
+              ? <div key={i} className="bubble-enter"><UserBubble text={msg.text} time={msg.time} /></div>
+              : <div key={i} className="bubble-enter"><AiBubble   text={msg.text} time={msg.time} /></div>
           )}
           {isLoading && <TypingIndicator />}
           {error && (
