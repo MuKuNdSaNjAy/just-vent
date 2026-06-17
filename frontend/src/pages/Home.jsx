@@ -1,9 +1,10 @@
 import { useRef, useEffect, useState, useCallback } from 'react'
-import { useVentState }    from '../hooks/useVentState'
-import VentArea            from '../components/VentArea'
-import LanguageSelector    from '../components/LanguageSelector'
-import ApiStatus           from '../components/ApiStatus'
-import VirtualKeyboard     from '../components/VirtualKeyboard'
+import { useVentState }      from '../hooks/useVentState'
+import VentArea              from '../components/VentArea'
+import LanguageSelector      from '../components/LanguageSelector'
+import ApiStatus             from '../components/ApiStatus'
+import VirtualKeyboard       from '../components/VirtualKeyboard'
+import BreathingExercise     from '../components/BreathingExercise'
 
 const MOODS = [
   { emoji: '😔', label: 'Low' },
@@ -39,6 +40,7 @@ export default function Home() {
 
   const [showVirtualKeyboard, setShowVirtualKeyboard] = useState(false)
   const [micError, setMicError]                       = useState(null)
+  const [showBreathing, setShowBreathing]             = useState(false)
 
   // Auto-show keyboard when a non-English language is selected
   useEffect(() => {
@@ -104,6 +106,7 @@ export default function Home() {
 
   return (
     <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', paddingTop: 58 }}>
+      {showBreathing && <BreathingExercise onClose={() => setShowBreathing(false)} />}
 
       {/* ── Hero ── */}
       {!hasMessages && (
@@ -133,6 +136,24 @@ export default function Home() {
             <div style={{ height: 1, width: 56, background: 'linear-gradient(90deg,transparent,rgba(212,98,42,0.35))' }} />
             <div style={{ width: 4, height: 4, borderRadius: '50%', background: '#D4622A', opacity: 0.5 }} />
             <div style={{ height: 1, width: 56, background: 'linear-gradient(270deg,transparent,rgba(212,98,42,0.35))' }} />
+          </div>
+
+          {/* Breathing exercise trigger */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '0.85rem' }}>
+            <button
+              onClick={() => setShowBreathing(true)}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
+                padding: '0.3rem 0.9rem', borderRadius: '999px',
+                background: 'transparent',
+                border: '1px solid rgba(212,98,42,0.1)',
+                fontSize: '0.72rem', color: '#3a3a3a', cursor: 'pointer', transition: 'all 0.15s',
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(212,98,42,0.3)'; e.currentTarget.style.color = '#9B4820' }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(212,98,42,0.1)'; e.currentTarget.style.color = '#3a3a3a' }}
+            >
+              🫁 Need to calm down first?
+            </button>
           </div>
 
           {/* Tone selector */}
