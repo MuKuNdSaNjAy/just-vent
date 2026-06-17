@@ -3,9 +3,17 @@ import { sendVent } from '../services/ventService'
 import { DEFAULT_LANGUAGE } from '../utils/languages'
 
 const CRISIS_KEYWORDS = [
-  'suicide', 'kill myself', 'end it all', "can't go on", 'cant go on',
-  'self-harm', 'self harm', 'cut myself', 'hurt myself',
-  'no reason to live', 'want to die', 'better off dead', 'end my life',
+  // suicidal ideation
+  'suicide', 'suicidal', 'kill myself', 'end it all', 'end my life',
+  "can't go on", 'cant go on', 'no reason to live', 'want to die',
+  'better off dead', 'better off without me', 'wish i was dead',
+  'not worth living', 'ready to die', 'planning to die',
+  // self-harm
+  'self-harm', 'self harm', 'selfharm', 'cut myself', 'hurt myself',
+  'harm myself', 'injure myself', 'burning myself',
+  // hopelessness signals
+  'nothing matters anymore', 'no point in living', 'give up on life',
+  'everyone would be better off', 'disappear forever', 'goodbye forever',
 ]
 
 function detectCrisis(text) {
