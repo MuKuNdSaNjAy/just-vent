@@ -34,6 +34,7 @@ const TONES = [
   { value: 'listen',      label: 'Just listen',       icon: '🤫' },
   { value: 'warm',        label: 'Be warmer',          icon: '🤗' },
   { value: 'perspective', label: 'Some perspective',   icon: '💭' },
+  { value: 'encourage',   label: 'Encourage me',       icon: '✨' },
 ]
 
 export default function Home() {
