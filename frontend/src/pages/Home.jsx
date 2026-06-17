@@ -651,7 +651,8 @@ function UserBubble({ text, time }) {
 }
 
 function AiBubble({ text, time }) {
-  const [copied, setCopied] = useState(false)
+  const [copied,   setCopied]   = useState(false)
+  const [reaction, setReaction] = useState(null)
 
   function copyText() {
     navigator.clipboard.writeText(text).then(() => {
@@ -659,6 +660,8 @@ function AiBubble({ text, time }) {
       setTimeout(() => setCopied(false), 2000)
     })
   }
+
+  function react(r) { setReaction((prev) => (prev === r ? null : r)) }
 
   return (
     <div style={{ display: 'flex', justifyContent: 'flex-start', gap: '0.55rem', alignItems: 'flex-start' }}>
@@ -703,7 +706,22 @@ function AiBubble({ text, time }) {
           {copied ? '✓ Copied' : '⎘ Copy'}
         </button>
       </div>
-      {time && <span style={{ fontSize: '0.6rem', color: '#252525', paddingLeft: '0.2rem' }}>{fmtTime(time)}</span>}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', paddingLeft: '0.2rem' }}>
+        {['👍', '❤️', '💭'].map((r) => (
+          <button
+            key={r}
+            onClick={() => react(r)}
+            style={{
+              background: reaction === r ? 'rgba(212,98,42,0.12)' : 'transparent',
+              border: `1px solid ${reaction === r ? 'rgba(212,98,42,0.3)' : 'transparent'}`,
+              borderRadius: '999px', padding: '0.05rem 0.35rem',
+              fontSize: '0.7rem', cursor: 'pointer', transition: 'all 0.15s',
+              opacity: reaction && reaction !== r ? 0.3 : 0.7,
+            }}
+          >{r}</button>
+        ))}
+        {time && <span style={{ fontSize: '0.6rem', color: '#252525', marginLeft: 'auto' }}>{fmtTime(time)}</span>}
+      </div>
       </div>
     </div>
   )
