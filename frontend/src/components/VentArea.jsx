@@ -46,6 +46,21 @@ const VentArea = forwardRef(function VentArea(
         </div>
       </div>
 
+      {/* Progress bar */}
+      {ventText.length > 0 && (
+        <div style={{ height: 2, borderRadius: 999, background: 'rgba(255,255,255,0.04)', overflow: 'hidden' }}>
+          <div style={{
+            height: '100%',
+            width: `${(ventText.length / MAX_CHARS) * 100}%`,
+            background: isNearLimit
+              ? 'linear-gradient(90deg,#ef4444,#dc2626)'
+              : 'linear-gradient(90deg,#D4622A,#E8943A)',
+            borderRadius: 999,
+            transition: 'width 0.1s ease, background 0.3s',
+          }} />
+        </div>
+      )}
+
       <div className={`text-right text-xs transition-colors duration-200 ${
         isNearLimit ? 'text-red-400 font-medium' : 'text-pitch-500'
       }`}>
