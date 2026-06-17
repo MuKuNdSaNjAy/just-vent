@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, useEffect } from 'react'
 import MicButton from './MicButton'
 
 const MAX_CHARS = 1000
@@ -9,6 +9,14 @@ const VentArea = forwardRef(function VentArea(
 ) {
   const remaining   = MAX_CHARS - ventText.length
   const isNearLimit = remaining <= 100
+
+  // Auto-resize: grow with content, shrink back when cleared
+  useEffect(() => {
+    const el = ref?.current
+    if (!el || !compact) return
+    el.style.height = 'auto'
+    el.style.height = `${Math.min(el.scrollHeight, 200)}px`
+  }, [ventText, compact, ref])
 
   return (
     <div className="space-y-1">
@@ -22,7 +30,9 @@ const VentArea = forwardRef(function VentArea(
           placeholder={compact ? 'Keep going… (Enter to send)' : "What's on your mind? Let it all out…"}
           rows={compact ? 2 : 6}
           className="vent-textarea"
-          style={compact ? { borderRadius: '1rem', padding: '0.65rem 3rem 0.65rem 1rem' } : { paddingRight: '3.5rem' }}
+          style={compact
+            ? { borderRadius: '1rem', padding: '0.65rem 3rem 0.65rem 1rem', resize: 'none', overflow: 'hidden', minHeight: '2.8rem' }
+            : { paddingRight: '3.5rem' }}
         />
         {/* Mic — secondary, smaller when compact */}
         <div style={{ position: 'absolute', bottom: compact ? '0.5rem' : '0.75rem', right: '0.6rem', opacity: 0.6 }}>
