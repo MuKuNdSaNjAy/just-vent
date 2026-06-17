@@ -6,6 +6,7 @@ import { httpsCallable } from 'firebase/functions'
 import { signOut } from 'firebase/auth'
 import { auth, db, functions } from '../services/firebase'
 import { useAuth } from '../context/AuthContext'
+import { getSessionCount } from '../hooks/useSessionCount'
 
 /* ── Shared primitives ── */
 const field = {
@@ -265,6 +266,43 @@ function PreferencesTab() {
   )
 }
 
+/* ────────────────── Stats tab ────────────────── */
+function StatsTab() {
+  const sessions = getSessionCount()
+
+  const statCard = (label, value, sub) => (
+    <div style={{
+      padding: '1.25rem 1.5rem', background: '#0c0c0c',
+      border: '1px solid rgba(212,98,42,0.1)', borderRadius: '0.9rem',
+      display: 'flex', flexDirection: 'column', gap: '0.3rem',
+    }}>
+      <p style={{ color: '#555', fontSize: '0.7rem', letterSpacing: '0.07em', textTransform: 'uppercase' }}>{label}</p>
+      <p style={{ color: '#D4622A', fontSize: '2rem', fontWeight: 700, lineHeight: 1 }}>{value}</p>
+      {sub && <p style={{ color: '#333', fontSize: '0.72rem' }}>{sub}</p>}
+    </div>
+  )
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', maxWidth: 480 }}>
+      <div>
+        <p style={sectionTitle}>Your Stats</p>
+        <p style={sectionSub}>A snapshot of your journey with Just Vent.</p>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.85rem' }}>
+        {statCard('Sessions completed', sessions, sessions === 0 ? 'Finish your first session to start tracking' : 'Keep going — you\'re doing great')}
+        {statCard('Streak', '—', 'Coming soon')}
+      </div>
+      <div style={{
+        padding: '1rem', background: 'rgba(212,98,42,0.03)',
+        border: '1px solid rgba(212,98,42,0.08)', borderRadius: '0.75rem',
+        fontSize: '0.78rem', color: '#3a3a3a', lineHeight: 1.65,
+      }}>
+        Stats are stored locally on this device and never sent to our servers. Your privacy is protected.
+      </div>
+    </div>
+  )
+}
+
 /* ────────────────── Danger Zone tab ────────────────── */
 function DangerTab({ user }) {
   const navigate = useNavigate()
@@ -324,6 +362,7 @@ const TABS = [
   { id: 'profile',     label: 'Profile' },
   { id: 'security',    label: 'Security' },
   { id: 'preferences', label: 'Preferences' },
+  { id: 'stats',       label: 'Stats' },
   { id: 'danger',      label: 'Danger Zone' },
 ]
 
@@ -397,6 +436,7 @@ export default function Settings() {
             {tab === 'profile'     && <ProfileTab     user={user} />}
             {tab === 'security'    && <SecurityTab />}
             {tab === 'preferences' && <PreferencesTab />}
+            {tab === 'stats'       && <StatsTab />}
             {tab === 'danger'      && <DangerTab      user={user} />}
           </div>
         </main>

@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import { sendVent } from '../services/ventService'
 import { DEFAULT_LANGUAGE } from '../utils/languages'
+import { incrementSessionCount } from './useSessionCount'
 
 const CRISIS_KEYWORDS = [
   // suicidal ideation
@@ -77,6 +78,7 @@ export function useVentState() {
 
   const finishSession = useCallback(async () => {
     setIsDone(true)
+    incrementSessionCount()
     const history = [...messages, { role: 'user', text: '__session_end__' }]
     setIsLoading(true)
     try {
