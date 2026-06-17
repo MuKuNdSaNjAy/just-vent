@@ -421,6 +421,24 @@ export default function Home() {
                 </button>
 
                 <button
+                  onClick={() => submitVent("I'm actually feeling a bit better now. Thank you for listening.")}
+                  disabled={isLoading}
+                  style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
+                    padding: '0.3rem 0.85rem', borderRadius: '999px',
+                    border: '1px solid rgba(134,239,172,0.15)',
+                    background: 'transparent', color: '#4a7a5a',
+                    fontSize: '0.72rem', cursor: isLoading ? 'not-allowed' : 'pointer',
+                    opacity: isLoading ? 0.5 : 1,
+                    transition: 'all 0.15s',
+                  }}
+                  onMouseEnter={(e) => { if (!isLoading) { e.currentTarget.style.borderColor = 'rgba(134,239,172,0.4)'; e.currentTarget.style.color = '#86efac' } }}
+                  onMouseLeave={(e) => { if (!isLoading) { e.currentTarget.style.borderColor = 'rgba(134,239,172,0.15)'; e.currentTarget.style.color = '#4a7a5a' } }}
+                >
+                  🌱 I feel better now
+                </button>
+
+                <button
                   onClick={finishSession}
                   disabled={isLoading}
                   style={{
