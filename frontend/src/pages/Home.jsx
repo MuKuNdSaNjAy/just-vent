@@ -41,10 +41,11 @@ const MOODS = [
 ]
 
 const TONES = [
-  { value: 'listen',      label: 'Just listen',       icon: '🤫' },
-  { value: 'warm',        label: 'Be warmer',          icon: '🤗' },
-  { value: 'perspective', label: 'Some perspective',   icon: '💭' },
-  { value: 'encourage',   label: 'Encourage me',       icon: '✨' },
+  { value: 'listen',      label: 'Just listen',       icon: '🤫', hint: 'No advice — only presence' },
+  { value: 'warm',        label: 'Be warmer',          icon: '🤗', hint: 'More gentle, more caring' },
+  { value: 'perspective', label: 'Some perspective',   icon: '💭', hint: 'Offer another angle' },
+  { value: 'encourage',   label: 'Encourage me',       icon: '✨', hint: 'Help me find my strength' },
+  { value: 'gratitude',   label: 'Find the good',      icon: '🌿', hint: 'Guide me toward gratitude' },
 ]
 
 export default function Home() {
@@ -226,6 +227,7 @@ export default function Home() {
                 <button
                   key={t.value}
                   onClick={() => setTone(t.value)}
+                  title={t.hint}
                   style={{
                     display: 'inline-flex', alignItems: 'center', gap: '0.35rem',
                     padding: '0.45rem 0.9rem', borderRadius: '999px',
