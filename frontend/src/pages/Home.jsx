@@ -10,9 +10,13 @@ const MOODS = [
   { emoji: '😔', label: 'Low' },
   { emoji: '😢', label: 'Sad' },
   { emoji: '😤', label: 'Frustrated' },
+  { emoji: '😡', label: 'Angry' },
   { emoji: '😰', label: 'Anxious' },
   { emoji: '😶', label: 'Numb' },
   { emoji: '😞', label: 'Overwhelmed' },
+  { emoji: '😕', label: 'Confused' },
+  { emoji: '😌', label: 'Hopeful' },
+  { emoji: '😴', label: 'Drained' },
 ]
 
 const TONES = [
