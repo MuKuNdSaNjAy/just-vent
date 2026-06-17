@@ -125,6 +125,18 @@ export default function Home() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isLoading])
 
+  // Keyboard shortcut: Ctrl/Cmd+Shift+N → new conversation
+  useEffect(() => {
+    function onKey(e) {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'N') {
+        e.preventDefault()
+        if (hasMessages && !isLoading) clearAll()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [hasMessages, isLoading, clearAll])
+
   function handleKeyDown(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
@@ -597,6 +609,7 @@ export default function Home() {
 
             <p style={{ fontSize: '0.65rem', color: '#252525', textAlign: 'center' }}>
               <kbd style={kbdStyle}>Enter</kbd> send &nbsp;·&nbsp; <kbd style={kbdStyle}>Shift+Enter</kbd> new line
+              {hasMessages && <> &nbsp;·&nbsp; <kbd style={kbdStyle}>Ctrl+Shift+N</kbd> new conversation</>}
             </p>
           </div>
           </div>{/* /padding wrapper */}
