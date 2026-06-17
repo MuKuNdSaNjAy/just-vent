@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { useVentState }      from '../hooks/useVentState'
+import { useLocalDraft }     from '../hooks/useLocalDraft'
 import VentArea              from '../components/VentArea'
 import LanguageSelector      from '../components/LanguageSelector'
 import ApiStatus             from '../components/ApiStatus'
@@ -58,6 +59,8 @@ export default function Home() {
   const [micError, setMicError]                       = useState(null)
   const [showBreathing, setShowBreathing]             = useState(false)
   const [affirmation]                                 = useState(() => AFFIRMATIONS[Math.floor(Math.random() * AFFIRMATIONS.length)])
+
+  useLocalDraft(ventText, setVentText)
 
   // Auto-show keyboard when a non-English language is selected
   useEffect(() => {
