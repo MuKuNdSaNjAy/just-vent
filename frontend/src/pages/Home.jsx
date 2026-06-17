@@ -7,6 +7,15 @@ import ApiStatus             from '../components/ApiStatus'
 import VirtualKeyboard       from '../components/VirtualKeyboard'
 import BreathingExercise     from '../components/BreathingExercise'
 
+const STARTERS = [
+  "I've been feeling really…",
+  "Something happened today that…",
+  "I can't stop thinking about…",
+  "Nobody seems to understand that…",
+  "I'm struggling with…",
+  "The thing that's been weighing on me is…",
+]
+
 const AFFIRMATIONS = [
   "You don't have to have it all figured out right now.",
   "Your feelings are valid, even when they're hard to explain.",
@@ -492,6 +501,28 @@ export default function Home() {
                   onClick={() => setMicError(null)}
                   style={{ flexShrink: 0, background: 'none', border: 'none', color: '#e87070', cursor: 'pointer', fontSize: '0.9rem', lineHeight: 1, padding: 0 }}
                 >×</button>
+              </div>
+            )}
+
+            {/* Writing prompt starters — only when textarea is empty and no messages */}
+            {!hasMessages && !ventText && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+                {STARTERS.map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => { setVentText(s + ' '); setTimeout(() => inputRef.current?.focus(), 0) }}
+                    style={{
+                      padding: '0.25rem 0.7rem', borderRadius: '999px',
+                      background: 'transparent',
+                      border: '1px solid rgba(212,98,42,0.12)',
+                      color: '#3a3a3a', fontSize: '0.68rem', cursor: 'pointer', transition: 'all 0.15s',
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(212,98,42,0.4)'; e.currentTarget.style.color = '#9B4820' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(212,98,42,0.12)'; e.currentTarget.style.color = '#3a3a3a' }}
+                  >
+                    {s}
+                  </button>
+                ))}
               </div>
             )}
 
