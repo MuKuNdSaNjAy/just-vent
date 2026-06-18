@@ -89,7 +89,7 @@ export default function SignIn() {
         <form onSubmit={handleEmailSignIn} className="space-y-4">
           <div>
             <label style={labelStyle}>Email</label>
-            <input name="email" type="email" required value={form.email} onChange={handleChange}
+            <input name="email" type="email" required autoComplete="email" value={form.email} onChange={handleChange}
               placeholder="you@example.com" style={inputStyle}
               onFocus={(e) => { e.target.style.borderColor = '#D4622A'; e.target.style.boxShadow = '0 0 0 2px rgba(212,98,42,0.2)' }}
               onBlur={(e)  => { e.target.style.borderColor = 'rgba(212,98,42,0.2)'; e.target.style.boxShadow = 'none' }}
@@ -98,7 +98,7 @@ export default function SignIn() {
 
           <div>
             <label style={labelStyle}>Password</label>
-            <input name="password" type="password" required value={form.password} onChange={handleChange}
+            <input name="password" type="password" required autoComplete="current-password" value={form.password} onChange={handleChange}
               placeholder="••••••••" style={inputStyle}
               onFocus={(e) => { e.target.style.borderColor = '#D4622A'; e.target.style.boxShadow = '0 0 0 2px rgba(212,98,42,0.2)' }}
               onBlur={(e)  => { e.target.style.borderColor = 'rgba(212,98,42,0.2)'; e.target.style.boxShadow = 'none' }}

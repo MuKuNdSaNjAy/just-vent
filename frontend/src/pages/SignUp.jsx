@@ -105,13 +105,13 @@ export default function SignUp() {
           <div className="grid grid-cols-2 gap-3">
             <div>
               <label style={labelStyle}>First Name</label>
-              <input name="firstName" type="text" required value={form.firstName}
+              <input name="firstName" type="text" required autoComplete="given-name" value={form.firstName}
                 onChange={handleChange} placeholder="Ada" style={inputStyle}
                 onFocus={focusIn} onBlur={focusOut} />
             </div>
             <div>
               <label style={labelStyle}>Last Name</label>
-              <input name="lastName" type="text" required value={form.lastName}
+              <input name="lastName" type="text" required autoComplete="family-name" value={form.lastName}
                 onChange={handleChange} placeholder="Lovelace" style={inputStyle}
                 onFocus={focusIn} onBlur={focusOut} />
             </div>
@@ -119,14 +119,14 @@ export default function SignUp() {
 
           <div>
             <label style={labelStyle}>Username</label>
-            <input name="username" type="text" required value={form.username}
+            <input name="username" type="text" required autoComplete="username" value={form.username}
               onChange={handleChange} placeholder="ada_lovelace" style={inputStyle}
               onFocus={focusIn} onBlur={focusOut} />
           </div>
 
           <div>
             <label style={labelStyle}>Email</label>
-            <input name="email" type="email" required value={form.email}
+            <input name="email" type="email" required autoComplete="email" value={form.email}
               onChange={handleChange} placeholder="ada@example.com" style={inputStyle}
               onFocus={focusIn} onBlur={focusOut} />
           </div>
@@ -148,14 +148,14 @@ export default function SignUp() {
 
           <div>
             <label style={labelStyle}>Password</label>
-            <input name="password" type="password" required value={form.password}
+            <input name="password" type="password" required autoComplete="new-password" value={form.password}
               onChange={handleChange} placeholder="Min. 8 characters" style={inputStyle}
               onFocus={focusIn} onBlur={focusOut} />
           </div>
 
           <div>
             <label style={labelStyle}>Confirm Password</label>
-            <input name="confirmPassword" type="password" required value={form.confirmPassword}
+            <input name="confirmPassword" type="password" required autoComplete="new-password" value={form.confirmPassword}
               onChange={handleChange} placeholder="••••••••" style={inputStyle}
               onFocus={focusIn} onBlur={focusOut} />
           </div>
