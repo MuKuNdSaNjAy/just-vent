@@ -257,6 +257,8 @@ export default function Home() {
                 <button
                   key={m.label}
                   onClick={() => pickMood(m)}
+                  aria-label={m.label}
+                  aria-pressed={mood?.label === m.label}
                   style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.2rem',
                     padding: '0.5rem 0.75rem', borderRadius: '0.75rem', border: '1px solid',
@@ -517,7 +519,8 @@ export default function Home() {
                 {language.code !== 'en' && (
                   <button
                     onClick={() => setShowVirtualKeyboard((v) => !v)}
-                    title={showVirtualKeyboard ? 'Hide keyboard' : 'Show virtual keyboard'}
+                    aria-label={showVirtualKeyboard ? 'Hide virtual keyboard' : 'Show virtual keyboard'}
+                    aria-pressed={showVirtualKeyboard}
                     style={{
                       width: 28, height: 28,
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
