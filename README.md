@@ -90,8 +90,9 @@ cd ../functions && npm install
 
 **`frontend/.env.local`**
 ```env
-VITE_SUPABASE_URL=your_firebase_project_url
-VITE_SUPABASE_ANON_KEY=your_firebase_anon_key
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_firebase_project_id
 ```
 
 **`functions/.env`**
