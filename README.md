@@ -145,3 +145,9 @@ firebase deploy
 ---
 
 *Built with care at IIT — because sometimes you just need to vent.*
+
+---
+
+## License
+
+MIT © Mukund Sanjay Bharani
