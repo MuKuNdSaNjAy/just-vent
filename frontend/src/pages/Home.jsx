@@ -141,6 +141,18 @@ export default function Home() {
     return () => window.removeEventListener('keydown', onKey)
   }, [hasMessages, isLoading, clearAll])
 
+  // Keyboard shortcut: Ctrl/Cmd+Shift+B → toggle breathing exercise
+  useEffect(() => {
+    function onKey(e) {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'B') {
+        e.preventDefault()
+        setShowBreathing((v) => !v)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
   function handleKeyDown(e) {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
@@ -644,6 +656,7 @@ export default function Home() {
             <p style={{ fontSize: '0.65rem', color: '#252525', textAlign: 'center' }}>
               <kbd style={kbdStyle}>Enter</kbd> send &nbsp;·&nbsp; <kbd style={kbdStyle}>Shift+Enter</kbd> new line
               {hasMessages && <> &nbsp;·&nbsp; <kbd style={kbdStyle}>Ctrl+Shift+N</kbd> new conversation</>}
+              &nbsp;·&nbsp; <kbd style={kbdStyle}>Ctrl+Shift+B</kbd> breathe
             </p>
           </div>
           </div>{/* /padding wrapper */}
