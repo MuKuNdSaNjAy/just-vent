@@ -74,6 +74,9 @@ export default function Home() {
 
   useLocalDraft(ventText, setVentText)
 
+  // Focus textarea on initial mount so users can start typing immediately
+  useEffect(() => { inputRef.current?.focus() }, [])
+
   // Session timer — ticks every minute once a conversation starts
   useEffect(() => {
     if (!hasMessages) return
