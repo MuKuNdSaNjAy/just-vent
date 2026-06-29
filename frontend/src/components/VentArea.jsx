@@ -9,6 +9,7 @@ const VentArea = forwardRef(function VentArea(
 ) {
   const remaining   = MAX_CHARS - ventText.length
   const isNearLimit = remaining <= 100
+  const wordCount   = ventText.trim() ? ventText.trim().split(/\s+/).length : 0
 
   // Auto-resize: grow with content, shrink back when cleared
   useEffect(() => {
@@ -64,6 +65,7 @@ const VentArea = forwardRef(function VentArea(
       <div className={`text-right text-xs transition-colors duration-200 ${
         isNearLimit ? 'text-red-400 font-medium' : 'text-pitch-500'
       }`}>
+        {ventText.length > 0 && <span style={{ opacity: 0.45, marginRight: '0.4rem' }}>{wordCount}w ·</span>}
         {remaining} / {MAX_CHARS}
       </div>
     </div>
