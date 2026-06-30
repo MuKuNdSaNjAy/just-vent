@@ -38,6 +38,7 @@ const MOODS = [
   { emoji: '😕', label: 'Confused' },
   { emoji: '😌', label: 'Hopeful' },
   { emoji: '😴', label: 'Drained' },
+  { emoji: '😮‍💨', label: 'Relieved' },
 ]
 
 const TONES = [
