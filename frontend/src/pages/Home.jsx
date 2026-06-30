@@ -314,6 +314,7 @@ export default function Home() {
             {TONES.find((t) => t.value === tone)?.label ?? 'Just listening'}
             {mood && <span style={{ opacity: 0.6 }}>· {mood.emoji} {mood.label}</span>}
             {sessionElapsed > 0 && <span style={{ opacity: 0.5 }}>· {sessionElapsed}m</span>}
+            {messages.length > 0 && <span style={{ opacity: 0.45 }}>· {messages.length} msg{messages.length !== 1 ? 's' : ''}</span>}
           </span>
         </div>
       )}
