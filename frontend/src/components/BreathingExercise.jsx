@@ -17,6 +17,12 @@ export default function BreathingExercise({ onClose }) {
   const circumference = 2 * Math.PI * 80
 
   useEffect(() => {
+    function onKey(e) { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+
+  useEffect(() => {
     if (!running) return
     intervalRef.current = setInterval(() => {
       setTick((t) => {
