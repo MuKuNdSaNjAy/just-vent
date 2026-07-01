@@ -1,4 +1,12 @@
+import { useEffect } from 'react'
+
 export default function LogoutModal({ onConfirm, onCancel }) {
+  useEffect(() => {
+    function onKey(e) { if (e.key === 'Escape') onCancel() }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onCancel])
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center px-4"
