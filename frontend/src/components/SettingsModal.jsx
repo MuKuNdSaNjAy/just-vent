@@ -459,6 +459,12 @@ export default function SettingsModal({ onClose, initialTab = 'profile' }) {
   const { user } = useAuth()
   const [activeTab, setActiveTab] = useState(initialTab)
 
+  useEffect(() => {
+    function onKey(e) { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
+
   return (
     <div style={overlay} onClick={(e) => { if (e.target === e.currentTarget) onClose() }}>
       <div style={shell}>
