@@ -11,6 +11,7 @@ export default function LogoutModal({ onConfirm, onCancel }) {
     <div
       className="fixed inset-0 z-50 flex items-center justify-center px-4"
       style={{ background: 'rgba(0,0,0,0.78)', backdropFilter: 'blur(5px)' }}
+      onClick={(e) => { if (e.target === e.currentTarget) onCancel() }}
     >
       <div
         className="w-full max-w-sm animate-fade-up text-center"
