@@ -477,7 +477,7 @@ export default function SettingsModal({ onClose, initialTab = 'profile' }) {
           flexShrink: 0,
         }}>
           <h2 style={{ color: '#f0f0f0', fontWeight: 700, fontSize: '1.1rem' }}>Settings</h2>
-          <button onClick={onClose} style={{
+          <button onClick={onClose} aria-label="Close settings" style={{
             background: 'none', border: 'none', color: '#555', cursor: 'pointer',
             width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center',
             borderRadius: '0.5rem', transition: 'color 0.15s',
