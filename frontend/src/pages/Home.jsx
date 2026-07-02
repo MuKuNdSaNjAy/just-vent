@@ -767,6 +767,7 @@ function AiBubble({ text, time }) {
           data-copy
           onClick={copyText}
           title="Copy message"
+          aria-label="Copy message"
           style={{
             position: 'absolute', top: '0.4rem', right: '0.4rem',
             background: 'rgba(20,13,11,0.9)', border: '1px solid rgba(212,98,42,0.2)',
