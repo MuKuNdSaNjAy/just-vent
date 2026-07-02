@@ -781,10 +781,12 @@ function AiBubble({ text, time }) {
         </button>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', paddingLeft: '0.2rem' }}>
-        {['👍', '❤️', '💭'].map((r) => (
+        {[{ emoji: '👍', label: 'Like' }, { emoji: '❤️', label: 'Love' }, { emoji: '💭', label: 'Relate' }].map(({ emoji: r, label }) => (
           <button
             key={r}
             onClick={() => react(r)}
+            aria-label={label}
+            title={label}
             style={{
               background: reaction === r ? 'rgba(212,98,42,0.12)' : 'transparent',
               border: `1px solid ${reaction === r ? 'rgba(212,98,42,0.3)' : 'transparent'}`,
