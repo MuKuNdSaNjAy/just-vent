@@ -46,12 +46,14 @@ export default function BreathingExercise({ onClose }) {
   }
 
   return (
-    <div style={{
-      position: 'fixed', inset: 0, zIndex: 200,
-      background: 'rgba(9,6,8,0.94)', backdropFilter: 'blur(16px)',
-      display: 'flex', flexDirection: 'column', alignItems: 'center',
-      justifyContent: 'center', gap: '1.75rem',
-    }}>
+    <div
+      onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 200,
+        background: 'rgba(9,6,8,0.94)', backdropFilter: 'blur(16px)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        justifyContent: 'center', gap: '1.75rem',
+      }}>
       <div>
         <p style={{ color: '#D4622A', fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', textAlign: 'center', marginBottom: 4 }}>
           4-7-8 Breathing
