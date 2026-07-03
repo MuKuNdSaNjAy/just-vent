@@ -637,6 +637,7 @@ export default function Home() {
                 onClick={handleSend}
                 disabled={isLoading || !ventText.trim()}
                 title="Send (Enter)"
+                aria-label="Send message"
                 style={{
                   flexShrink: 0, width: 42, height: 42, borderRadius: '50%',
                   background: isLoading || !ventText.trim()
