@@ -588,6 +588,7 @@ export default function Home() {
                 <span>🎙 {micError}</span>
                 <button
                   onClick={() => setMicError(null)}
+                  aria-label="Dismiss microphone error"
                   style={{ flexShrink: 0, background: 'none', border: 'none', color: '#e87070', cursor: 'pointer', fontSize: '0.9rem', lineHeight: 1, padding: 0 }}
                 >×</button>
               </div>
