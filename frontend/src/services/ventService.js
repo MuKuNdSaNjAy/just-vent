@@ -8,6 +8,11 @@ export async function sendVent(messages, languageCode = 'en', mood = null, tone 
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages, languageCode, mood, tone }),
     })
+    if (!res.ok) {
+      let msg = `Vent server error (${res.status})`
+      try { const d = await res.json(); msg = d.error ?? msg } catch { /* ignore */ }
+      throw new Error(msg)
+    }
     const data = await res.json()
     if (!data.response) throw new Error(data.error ?? 'No response received.')
     return data.response
