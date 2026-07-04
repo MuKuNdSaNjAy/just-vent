@@ -118,7 +118,7 @@ export function useAudioRecorder({ language = 'en', onTranscript, onError }) {
         setElapsed(s)
         if (s >= MAX_SECS) {
           clearInterval(tickRef.current)
-          mr.stop() // auto-stop → triggers onstop → Whisper
+          stopRecording() // auto-stop → triggers onstop → Whisper
         }
       }, 1000)
     } catch (err) {
@@ -130,7 +130,7 @@ export function useAudioRecorder({ language = 'en', onTranscript, onError }) {
           : `Could not start recording: ${err.message}`
       onErrorRef.current?.(msg)
     }
-  }, [isRecording, isProcessing])
+  }, [isRecording, isProcessing, stopRecording])
 
   // Cleanup on unmount
   useEffect(() => () => {
