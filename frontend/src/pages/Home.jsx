@@ -657,7 +657,7 @@ export default function Home() {
               </button>
             </div>
 
-            <p style={{ fontSize: '0.65rem', color: '#252525', textAlign: 'center' }}>
+            <p style={{ fontSize: '0.8rem', color: '#252525', textAlign: 'center' }}>
               <kbd style={kbdStyle}>Enter</kbd> send &nbsp;·&nbsp; <kbd style={kbdStyle}>Shift+Enter</kbd> new line
               {hasMessages && <> &nbsp;·&nbsp; <kbd style={kbdStyle}>Ctrl+Shift+N</kbd> new conversation</>}
               &nbsp;·&nbsp; <kbd style={kbdStyle}>Ctrl+Shift+B</kbd> breathe

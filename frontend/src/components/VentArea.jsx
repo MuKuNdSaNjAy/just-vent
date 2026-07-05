@@ -1,7 +1,7 @@
 import { forwardRef, useEffect } from 'react'
 import MicButton from './MicButton'
 
-const MAX_CHARS = 1000
+const MAX_CHARS = 2000
 
 const VentArea = forwardRef(function VentArea(
   { ventText, onChange, onTranscript, onError, speechCode, disabled, onKeyDown, compact },
