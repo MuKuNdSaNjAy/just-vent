@@ -166,6 +166,7 @@ function SecurityTab() {
     try {
       await updatePassword(auth.currentUser, f.newPass)
       setMsg({ ok: true, text: 'Password updated.' })
+      setF({ newPass: '', confirm: '' })
     } catch (err) {
       const text = err.code === 'auth/requires-recent-login'
         ? 'Please sign out and sign back in before changing your password.'
@@ -174,7 +175,6 @@ function SecurityTab() {
     } finally {
       setSaving(false)
     }
-    setF({ newPass: '', confirm: '' })
   }
 
   return (
