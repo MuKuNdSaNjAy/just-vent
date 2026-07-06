@@ -22,6 +22,9 @@ function detectCrisis(text) {
   return CRISIS_KEYWORDS.some((kw) => lower.includes(kw))
 }
 
+// Keep in sync with VentArea's MAX_CHARS
+const MAX_VENT_CHARS = 2000
+
 export function useVentState() {
   const [messages, setMessages]     = useState([])
   const [ventText, setVentText]     = useState('')
@@ -34,7 +37,10 @@ export function useVentState() {
   const [isDone, setIsDone]         = useState(false)
 
   const appendTranscript = useCallback((transcript) => {
-    setVentText((prev) => (prev ? `${prev} ${transcript}` : transcript))
+    setVentText((prev) => {
+      const next = prev ? `${prev} ${transcript}` : transcript
+      return next.slice(0, MAX_VENT_CHARS)
+    })
   }, [])
 
   const submitVent = useCallback(async (overrideText = null) => {
