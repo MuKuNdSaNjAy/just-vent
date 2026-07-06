@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { updatePassword } from 'firebase/auth'
-import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { httpsCallable } from 'firebase/functions'
 import { signOut } from 'firebase/auth'
 import { auth, db, functions } from '../services/firebase'
@@ -85,11 +85,12 @@ function ProfileTab({ user }) {
   async function save(e) {
     e.preventDefault(); setSaving(true); setMsg(null)
     try {
-      await updateDoc(doc(db, 'users', user.uid), {
+      await setDoc(doc(db, 'users', user.uid), {
         first_name: p.first_name, last_name: p.last_name,
         username: p.username.toLowerCase().trim(),
+        email: p.email || user.email,
         dob: p.dob, age: calcAge(p.dob),
-      })
+      }, { merge: true })
       setMsg({ ok: true, text: 'Profile saved successfully.' })
     } catch (err) {
       setMsg({ ok: false, text: err.message })
