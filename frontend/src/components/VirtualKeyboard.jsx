@@ -31,6 +31,8 @@ const LAYOUTS = {
   },
 }
 
+export const KEYBOARD_LANGS = Object.keys(LAYOUTS)
+
 export default function VirtualKeyboard({ langCode, onKey, onBackspace, onClose }) {
   const layout = LAYOUTS[langCode]
   if (!layout) return null

@@ -4,7 +4,7 @@ import { useLocalDraft }     from '../hooks/useLocalDraft'
 import VentArea              from '../components/VentArea'
 import LanguageSelector      from '../components/LanguageSelector'
 import ApiStatus             from '../components/ApiStatus'
-import VirtualKeyboard       from '../components/VirtualKeyboard'
+import VirtualKeyboard, { KEYBOARD_LANGS } from '../components/VirtualKeyboard'
 import BreathingExercise     from '../components/BreathingExercise'
 
 const STARTERS = [
@@ -86,9 +86,9 @@ export default function Home() {
     return () => clearInterval(id)
   }, [hasMessages, sessionStart])
 
-  // Auto-show keyboard when a non-English language is selected
+  // Auto-show keyboard when a language with a defined virtual layout is selected
   useEffect(() => {
-    setShowVirtualKeyboard(language.code !== 'en')
+    setShowVirtualKeyboard(KEYBOARD_LANGS.includes(language.code))
   }, [language.code])
 
   const insertAtCursor = useCallback((char) => {
@@ -457,7 +457,7 @@ export default function Home() {
         }}>
 
           {/* Virtual keyboard — slides in above the padded content */}
-          {showVirtualKeyboard && language.code !== 'en' && (
+          {showVirtualKeyboard && KEYBOARD_LANGS.includes(language.code) && (
             <VirtualKeyboard
               langCode={language.code}
               onKey={insertAtCursor}
@@ -532,8 +532,8 @@ export default function Home() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <LanguageSelector language={language} onChange={setLanguage} />
-                {/* Keyboard toggle — only shown for non-English languages */}
-                {language.code !== 'en' && (
+                {/* Keyboard toggle — only shown for languages with a defined virtual layout */}
+                {KEYBOARD_LANGS.includes(language.code) && (
                   <button
                     onClick={() => setShowVirtualKeyboard((v) => !v)}
                     aria-label={showVirtualKeyboard ? 'Hide virtual keyboard' : 'Show virtual keyboard'}
