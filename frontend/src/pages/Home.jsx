@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { useVentState }      from '../hooks/useVentState'
 import { useLocalDraft }     from '../hooks/useLocalDraft'
+import { useAuth }           from '../context/AuthContext'
 import VentArea              from '../components/VentArea'
 import LanguageSelector      from '../components/LanguageSelector'
 import ApiStatus             from '../components/ApiStatus'
@@ -61,6 +62,7 @@ export default function Home() {
     appendTranscript, submitVent, requestAdvice, finishSession, clearAll,
   } = useVentState()
 
+  const { user } = useAuth()
   const bottomRef   = useRef(null)
   const inputRef    = useRef(null)
   const hasMessages = messages.length > 0
@@ -73,7 +75,7 @@ export default function Home() {
   const [sessionStart]                               = useState(() => Date.now())
   const [sessionElapsed, setSessionElapsed]          = useState(0)
 
-  useLocalDraft(ventText, setVentText)
+  useLocalDraft(ventText, setVentText, user?.uid)
 
   // Focus textarea on initial mount so users can start typing immediately
   useEffect(() => { inputRef.current?.focus() }, [])
