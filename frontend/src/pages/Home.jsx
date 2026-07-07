@@ -80,7 +80,7 @@ export default function Home() {
   // Focus textarea on initial mount so users can start typing immediately
   useEffect(() => { inputRef.current?.focus() }, [])
 
-  // Session timer — ticks every minute once a conversation starts
+  // Session timer — ticks every 30 seconds once a conversation starts
   useEffect(() => {
     if (!hasMessages) return
     const id = setInterval(() => setSessionElapsed(Math.floor((Date.now() - sessionStart) / 60000)), 30000)
