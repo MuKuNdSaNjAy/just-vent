@@ -252,7 +252,7 @@ function PreferencesTab() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: 500 }}>
-      <div><p style={sectionTitle}>Preferences</p><p style={sectionSub}>Personalise your Just Vent experience.</p></div>
+      <div><p style={sectionTitle}>Preferences</p><p style={sectionSub}>Personalize your Just Vent experience.</p></div>
 
       <p style={{ ...lbl, color: '#3a3a3a' }}>Appearance</p>
       <PrefRow label="Soft theme" sub="Muted gold instead of bright gold accents" on={prefs.theme} onChange={v => setPref('theme', v)} />
