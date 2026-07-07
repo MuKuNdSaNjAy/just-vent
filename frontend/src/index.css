@@ -166,7 +166,7 @@
   background: rgba(212,98,42,0.4);
 }
 
-/* ── Selection colour ── */
+/* ── Selection color ── */
 ::selection {
   background: rgba(212,98,42,0.28);
   color: #F5CEB0;
