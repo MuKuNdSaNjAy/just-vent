@@ -122,7 +122,7 @@ export default function VirtualKeyboard({ langCode, onKey, onBackspace, onClose 
         ))}
       </div>
 
-      {/* Bottom bar: space + backspace */}
+      {/* Bottom bar: space bar + backspace key */}
       <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.45rem' }}>
         <button
           onMouseDown={(e) => e.preventDefault()}
