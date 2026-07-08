@@ -1,6 +1,6 @@
 /**
  * Supported languages for the vent input and AI response.
- * `speechCode` maps to the BCP-47 tag used by the Web Speech API.
+ * `speechCode` maps to the BCP-47 tag used by the Web Speech API for voice input.
  */
 export const LANGUAGES = [
   { code: 'en', label: 'English',    speechCode: 'en-IN' },
