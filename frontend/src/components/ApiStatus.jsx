@@ -2,7 +2,7 @@ export default function ApiStatus({ isLoading, error, onDismiss }) {
   if (isLoading) {
     return (
       <div role="status" aria-live="polite" className="flex items-center gap-3 animate-fade-up">
-        {/* Gold spinner */}
+        {/* Gold spinner shown while the vent request is in flight */}
         <svg
           className="w-5 h-5"
           style={{ animation: 'spin-gold 0.9s linear infinite', color: '#D4622A' }}
