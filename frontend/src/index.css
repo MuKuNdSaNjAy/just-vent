@@ -115,7 +115,7 @@
   }
 }
 
-/* Keyframes used by inline styles */
+/* ── Keyframes used by inline styles ── */
 @keyframes mic-pulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(212,98,42,0.5); }
   50%       { box-shadow: 0 0 0 10px rgba(212,98,42,0); }
