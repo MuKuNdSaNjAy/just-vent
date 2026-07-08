@@ -5,7 +5,7 @@ const DRAFT_KEY_PREFIX = 'jv-vent-draft'
 export function useLocalDraft(ventText, setVentText, uid) {
   const draftKey = uid ? `${DRAFT_KEY_PREFIX}-${uid}` : DRAFT_KEY_PREFIX
 
-  // Restore draft from localStorage on mount (only if the input is empty)
+  // Restore draft from localStorage once on mount (only if the input is empty)
   useEffect(() => {
     const saved = localStorage.getItem(draftKey)
     if (saved) setVentText(saved)
