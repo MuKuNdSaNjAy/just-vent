@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 export default function LogoutModal({ onConfirm, onCancel }) {
   useEffect(() => {
-    function onKey(e) { if (e.key === 'Escape') onCancel() }
+    function onKey(e) { if (e.key === 'Escape') onCancel() } // Escape cancels, same as clicking the backdrop
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [onCancel])
