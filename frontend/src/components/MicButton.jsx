@@ -15,7 +15,7 @@ export default function MicButton({ speechCode, onTranscript, onError, disabled,
   const { isRecording, isProcessing, elapsed, startRecording, stopRecording } =
     useAudioRecorder({ language, onTranscript, onError })
 
-  const remaining = MAX_SECS - elapsed
+  const remaining = MAX_SECS - elapsed // counts down so the label matches stopRecording's title
   const sz = small ? 'w-7 h-7' : 'w-10 h-10'
 
   return (
