@@ -75,7 +75,7 @@ export function useAudioRecorder({ language = 'en', onTranscript, onError }) {
       setIsRecording(false)
       setElapsed(0)
 
-      if (blob.size < 500) return // too short, nothing useful
+      if (blob.size < 500) return // below this, it's silence/noise, not speech
 
       setIsProcessing(true)
       try {
