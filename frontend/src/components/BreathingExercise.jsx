@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 
+// Standard 4-7-8 technique: inhale 4s, hold 7s, exhale 8s
 const PHASES = [
   { name: 'Inhale',  seconds: 4, instruction: 'Breathe in slowly through your nose',    scale: 1.25 },
   { name: 'Hold',    seconds: 7, instruction: 'Hold your breath gently',                 scale: 1.25 },
