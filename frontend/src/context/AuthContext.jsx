@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
       setUser(firebaseUser)
       setLoading(false)
     })
-    return unsub
+    return unsub // detach the Firebase listener on unmount to avoid updating state after teardown
   }, [])
 
   return (
