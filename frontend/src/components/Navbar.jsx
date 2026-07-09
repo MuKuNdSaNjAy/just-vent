@@ -12,6 +12,7 @@ function UserMenu({ user }) {
   const navigate = useNavigate()
 
   useEffect(() => {
+    // Close the menu on any click outside it, not just an explicit toggle
     const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false) }
     document.addEventListener('mousedown', handler)
     return () => document.removeEventListener('mousedown', handler)
