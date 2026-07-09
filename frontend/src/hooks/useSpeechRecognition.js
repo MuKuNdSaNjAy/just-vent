@@ -3,7 +3,7 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition
 
-const MAX_DURATION_MS = 120_000 // 2 minutes
+const MAX_DURATION_MS = 120_000 // 2 minutes — matches the voice-recorder cap in useAudioRecorder
 
 function friendlyError(code) {
   switch (code) {
