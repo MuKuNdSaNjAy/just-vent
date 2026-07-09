@@ -17,6 +17,7 @@ const CRISIS_KEYWORDS = [
   'everyone would be better off', 'disappear forever', 'goodbye forever',
 ]
 
+// Best-effort keyword match, not a clinical assessment — false negatives are expected
 function detectCrisis(text) {
   const lower = text.toLowerCase()
   return CRISIS_KEYWORDS.some((kw) => lower.includes(kw))
