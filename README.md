@@ -45,7 +45,7 @@ It's built for those moments when you need to get something off your chest but d
 | Backend    | Firebase Cloud Functions (Node 20)                 |
 | Database   | Firebase Firestore                                 |
 | AI         | Anthropic Claude (`claude-sonnet-4-6`)             |
-| Speech     | Web Speech API (browser-native)                    |
+| Speech     | OpenAI Whisper (voice message transcription)       |
 | Hosting    | Firebase Hosting                                   |
 
 ---
