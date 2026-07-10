@@ -20,7 +20,7 @@ It's built for those moments when you need to get something off your chest but d
 
 ## Features
 
-- **Vent freely** — type up to 1,000 characters or use your voice
+- **Vent freely** — type up to 2,000 characters or use your voice
 - **Voice input** — speak your thoughts using the browser's Speech API
 - **Four response tones** — choose how you want to be met:
   - *Listen* — quiet, reflective presence
