@@ -58,7 +58,7 @@ just-vent/
 │   └── src/
 │       ├── components/     # VentArea, MicButton, ResponseArea, Navbar, …
 │       ├── context/        # AuthContext
-│       ├── hooks/          # useVentState, useAudioRecorder, useSpeechRecognition
+│       ├── hooks/          # useVentState, useAudioRecorder, useLocalDraft, useSessionCount
 │       ├── pages/          # Home, SignIn, SignUp, Settings
 │       ├── services/       # Firebase client, ventService
 │       └── utils/          # languages
