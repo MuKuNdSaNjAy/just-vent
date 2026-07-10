@@ -30,7 +30,7 @@ It's built for those moments when you need to get something off your chest but d
   - *Find the good* — gently guides toward gratitude, without forcing it
 - **Mood tagging** — label how you're feeling before you start
 - **Multi-turn conversations** — the AI remembers your session context
-- **Multilingual** — vent in English, हिंदी, தமிழ், or తెలుగు
+- **Multilingual** — vent in any of 8 supported languages (see table below)
 - **Virtual keyboard** — on-screen input for accessibility
 - **Auth** — secure sign-in via Firebase Authentication
 
