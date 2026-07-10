@@ -70,7 +70,7 @@ export function useVentState() {
 
   const requestAdvice = useCallback(async () => {
     const history = [...messages, { role: 'user', text: '__advice_request__' }]
-    setMessages([...messages, { role: 'user', text: '💭 I\'d like some perspective on this.', time: Date.now() }])
+    setMessages([...messages, { role: 'user', text: "💭 I'd like some perspective on this.", time: Date.now() }])
     setIsLoading(true)
     setError(null)
     try {
