@@ -36,11 +36,6 @@ Leave them with a sense of calm and self-compassion.
 }
 
 function buildMessages(messages, mood, tone) {
-  // Filter out special control messages
-  const filtered = messages.filter(
-    (m) => m.text !== '__advice_request__' && m.text !== '__session_end__'
-  )
-
   // For advice_request, replace with a natural user message
   const formatted = messages.map((m) => {
     if (m.text === '__advice_request__') {
