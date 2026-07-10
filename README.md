@@ -108,8 +108,8 @@ OPENAI_API_KEY=sk-proj-...
 # Terminal 1 — frontend
 cd frontend && npm run dev
 
-# Terminal 2 — Firebase emulator
-firebase emulators:start --only functions
+# Terminal 2 — local API server (proxies Anthropic + Whisper calls)
+node dev-server.js
 ```
 
 ### 4. Deploy
