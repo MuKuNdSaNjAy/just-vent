@@ -10,10 +10,6 @@ dist/
 .env.local
 .env.*.local
 
-# Supabase local dev
-supabase/.branches/
-supabase/.temp/
-
 # Claude Code local settings
 .claude/settings.local.json
 
