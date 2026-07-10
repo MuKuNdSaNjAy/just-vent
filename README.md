@@ -22,11 +22,12 @@ It's built for those moments when you need to get something off your chest but d
 
 - **Vent freely** — type up to 2,000 characters or use your voice
 - **Voice input** — speak your thoughts using the browser's Speech API
-- **Four response tones** — choose how you want to be met:
-  - *Listen* — quiet, reflective presence
-  - *Warm* — nurturing, emotionally rich support
-  - *Perspective* — gentle reframing when you're ready
-  - *Closing* — a soft, affirming way to end a session
+- **Five response tones** — choose how you want to be met:
+  - *Just listen* — quiet, reflective presence
+  - *Be warmer* — nurturing, emotionally rich support
+  - *Some perspective* — gentle reframing when you're ready
+  - *Encourage me* — reflects back your own strength and resilience
+  - *Find the good* — gently guides toward gratitude, without forcing it
 - **Mood tagging** — label how you're feeling before you start
 - **Multi-turn conversations** — the AI remembers your session context
 - **Multilingual** — vent in English, हिंदी, தமிழ், or తెలుగు
