@@ -7,6 +7,7 @@ import { signOut } from 'firebase/auth'
 import { auth, db, functions } from '../services/firebase'
 import { useAuth } from '../context/AuthContext'
 import { getSessionCount } from '../hooks/useSessionCount'
+import { calcAge } from '../utils/calcAge'
 
 /* ── Shared primitives ── */
 const field = {
@@ -32,14 +33,6 @@ const saveBtn = {
 
 function fi(e) { e.target.style.borderColor = '#D4622A'; e.target.style.boxShadow = '0 0 0 2px rgba(212,98,42,0.18)' }
 function fo(e) { e.target.style.borderColor = 'rgba(212,98,42,0.2)'; e.target.style.boxShadow = 'none' }
-
-function calcAge(dob) {
-  if (!dob) return null
-  const t = new Date(), b = new Date(dob)
-  let a = t.getFullYear() - b.getFullYear()
-  if (t.getMonth() - b.getMonth() < 0 || (t.getMonth() === b.getMonth() && t.getDate() < b.getDate())) a--
-  return a
-}
 
 function StatusBadge({ msg }) {
   if (!msg) return null
@@ -103,6 +96,8 @@ function ProfileTab({ user }) {
 
   if (loading) return <Spinner />
 
+  const age = calcAge(p.dob)
+
   return (
     <form onSubmit={save} style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem', maxWidth: 520 }}>
       <div><p style={sectionTitle}>Profile</p><p style={sectionSub}>Manage your personal information.</p></div>
@@ -136,8 +131,8 @@ function ProfileTab({ user }) {
         </div>
         <div>
           <label style={lbl}>Age</label>
-          <div style={{ ...field, color: calcAge(p.dob) ? '#D4622A' : '#333', cursor: 'default' }}>
-            {calcAge(p.dob) ? `${calcAge(p.dob)} years` : '—'}
+          <div style={{ ...field, color: age ? '#D4622A' : '#333', cursor: 'default' }}>
+            {age ? `${age} years` : '—'}
           </div>
         </div>
       </div>
