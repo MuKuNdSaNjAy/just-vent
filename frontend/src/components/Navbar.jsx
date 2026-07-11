@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { signOut } from 'firebase/auth'
 import { auth } from '../services/firebase'
 import { useAuth } from '../context/AuthContext'
@@ -111,7 +111,6 @@ function UserMenu({ user }) {
 export default function Navbar() {
   const { user } = useAuth()
   const navigate  = useNavigate()
-  const location  = useLocation()
 
   return (
     <nav style={{
