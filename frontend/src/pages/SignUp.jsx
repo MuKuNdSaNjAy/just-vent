@@ -4,19 +4,11 @@ import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/
 import { doc, setDoc } from 'firebase/firestore'
 import { auth, db } from '../services/firebase'
 import { labelStyle, inputStyle } from './SignIn'
+import { calcAge } from '../utils/calcAge'
 
 const INITIAL = {
   firstName: '', lastName: '', username: '',
   email: '', password: '', confirmPassword: '', dob: '',
-}
-
-function calcAge(dob) {
-  if (!dob) return null
-  const today = new Date(), birth = new Date(dob)
-  let age = today.getFullYear() - birth.getFullYear()
-  const m = today.getMonth() - birth.getMonth()
-  if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--
-  return age
 }
 
 export default function SignUp() {
