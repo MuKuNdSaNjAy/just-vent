@@ -144,7 +144,7 @@ firebase deploy
 1. User types or speaks a vent and picks a response tone
 2. The frontend sends the conversation history + mood + tone to a Firebase Cloud Function
 3. The function calls the Anthropic Claude API with a carefully crafted system prompt tuned to each tone
-4. Claude's response is streamed back and displayed in the UI
+4. Claude's response is returned in full and displayed in the UI
 5. The session continues until the user is done — then a warm closing message ends it
 
 ---
