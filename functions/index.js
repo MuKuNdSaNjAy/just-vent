@@ -95,6 +95,10 @@ function callAnthropic(messages, mood, tone) {
 
 function callWhisper(base64Audio, language) {
   return new Promise((resolve, reject) => {
+    if (!process.env.OPENAI_API_KEY) {
+      return reject(new Error('OPENAI_API_KEY not set.'))
+    }
+
     const audioBuffer = Buffer.from(base64Audio, 'base64')
     const boundary    = 'WBoundary' + Math.random().toString(36).slice(2)
 
