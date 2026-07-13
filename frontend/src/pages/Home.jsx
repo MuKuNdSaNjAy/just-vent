@@ -735,6 +735,9 @@ function AiBubble({ text, time }) {
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
+    }).catch(() => {
+      // Clipboard permission can be denied — fail silently rather than
+      // leaving an unhandled promise rejection in the console.
     })
   }
 
