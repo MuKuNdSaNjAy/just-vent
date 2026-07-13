@@ -72,6 +72,11 @@ function ProfileTab({ user }) {
       if (snap.exists()) setP(snap.data())
       else setP({ first_name: '', last_name: '', username: '', email: user.email ?? '', dob: '', age: null })
       setLoading(false)
+    }).catch((err) => {
+      // Without this, a failed fetch (e.g. offline) left the tab spinning forever
+      setP({ first_name: '', last_name: '', username: '', email: user.email ?? '', dob: '', age: null })
+      setMsg({ ok: false, text: err.message })
+      setLoading(false)
     })
   }, [user.uid])
 
