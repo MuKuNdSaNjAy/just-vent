@@ -29,6 +29,11 @@ export default function MicButton({ speechCode, onTranscript, onError, disabled,
           isRecording  ? `Stop recording (${fmt(remaining)} left)` :
                          'Record voice message (up to 2 min)'
         }
+        aria-label={
+          isProcessing ? 'Transcribing voice message' :
+          isRecording  ? 'Stop recording' :
+                         'Record voice message'
+        }
         className={`flex items-center justify-center rounded-full transition-all duration-200
           disabled:cursor-not-allowed ${sz}`}
         style={
