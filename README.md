@@ -21,7 +21,7 @@ It's built for those moments when you need to get something off your chest but d
 ## Features
 
 - **Vent freely** — type up to 2,000 characters or use your voice
-- **Voice input** — speak your thoughts using the browser's Speech API
+- **Voice input** — record your thoughts and have them transcribed by OpenAI Whisper
 - **Five response tones** — choose how you want to be met:
   - *Just listen* — quiet, reflective presence
   - *Be warmer* — nurturing, emotionally rich support
