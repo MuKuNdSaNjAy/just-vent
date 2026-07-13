@@ -1,6 +1,7 @@
 /**
  * Supported languages for the vent input and AI response.
- * `speechCode` maps to the BCP-47 tag used by the Web Speech API for voice input.
+ * `speechCode` is a BCP-47 tag (e.g. 'hi-IN'); MicButton strips it down to the
+ * base language code before passing it to Whisper for voice transcription.
  */
 export const LANGUAGES = [
   { code: 'en', label: 'English',    speechCode: 'en-IN' },
