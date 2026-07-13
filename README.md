@@ -56,7 +56,7 @@ It's built for those moments when you need to get something off your chest but d
 just-vent/
 ├── frontend/
 │   └── src/
-│       ├── components/     # VentArea, MicButton, ResponseArea, Navbar, …
+│       ├── components/     # VentArea, MicButton, Navbar, …
 │       ├── context/        # AuthContext
 │       ├── hooks/          # useVentState, useAudioRecorder, useLocalDraft, useSessionCount
 │       ├── pages/          # Home, SignIn, SignUp, Settings
