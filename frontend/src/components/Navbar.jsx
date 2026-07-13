@@ -26,8 +26,14 @@ function UserMenu({ user }) {
   }, [open])
 
   async function confirmLogout() {
-    await signOut(auth)
-    navigate('/signin')
+    try {
+      await signOut(auth)
+      navigate('/signin')
+    } catch {
+      // signOut can fail (e.g. network issue) — close the modal instead of
+      // leaving it stuck open with no way to dismiss it.
+      setLogout(false)
+    }
   }
 
   const avatar = user?.email?.[0]?.toUpperCase() ?? '?'
