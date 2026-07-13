@@ -203,9 +203,9 @@ function SecurityTab() {
 /* ────────────────── Preferences tab ────────────────── */
 const KEYS = { theme: 'jv-theme', notifyEmail: 'jv-notify-email', notifyBrowser: 'jv-notify-browser', saveHistory: 'jv-save-history' }
 
-function Toggle({ on, onChange }) {
+function Toggle({ on, onChange, label }) {
   return (
-    <button type="button" onClick={() => onChange(!on)} style={{
+    <button type="button" onClick={() => onChange(!on)} role="switch" aria-checked={on} aria-label={label} style={{
       width: 44, height: 24, borderRadius: 12, flexShrink: 0,
       background: on ? 'linear-gradient(90deg,#E8943A,#D4622A)' : '#1C1210',
       border: on ? 'none' : '1px solid #2e2e2e',
@@ -231,7 +231,7 @@ function PrefRow({ label: l, sub, on, onChange }) {
         <p style={{ color: '#d0d0d0', fontSize: '0.87rem', fontWeight: 500 }}>{l}</p>
         {sub && <p style={{ color: '#444', fontSize: '0.74rem', marginTop: 2 }}>{sub}</p>}
       </div>
-      <Toggle on={on} onChange={onChange} />
+      <Toggle on={on} onChange={onChange} label={l} />
     </div>
   )
 }
